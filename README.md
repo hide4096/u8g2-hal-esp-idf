@@ -1,4 +1,24 @@
-# U8g2 compatibility component for esp-idf on ESP32
+# U8g2 compatibility component on ESP32 for esp-idf v5
+## Note
+
+esp-idf v5で
+[u8g2](https://github.com/olikraus/u8g2)
+を使うためのプログラムです
+
+`driver/i2c.h`を使うと`assert failed`で落ちるので`driver/i2c_master.h`に変更しました
+
+それに伴い、いくつか変更点があります
+- `u8g2_esp32_hal_init()`を呼び出す際に、設定済みの`i2c_master_bus_handle_t`を渡す必要があります
+- `u8g2_esp32_hal_t`でのI2Cのピン設定は無視されます
+
+## ToDo
+
+[ ]: `u8g2_esp32_hal_t`の構造を見直す
+
+[ ]: ちゃんとREADME書く
+
+以下はフォーク元のREADMEです
+
 ## Note
 This is effectively a fork of the U8G2 code that is part of Neil Kolban's excellent `esp32-snippets` repository. It can be found 
 [here](https://github.com/nkolban/esp32-snippets/tree/master/hardware/displays/U8G2).
@@ -7,6 +27,8 @@ His repository is no longer maintained and using a single directory as submodule
 files and made them a functional component for esp-idf by creating the required build system files.
 
 This component should compile on esp-idf versions 4.x upward. Versions 3.x are no longer supported.
+
+
 
 ## Description
 There is an excellent open source library called `u8g2` that can be found on Github here:
